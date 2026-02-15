@@ -1,0 +1,155 @@
+/* --- 1. VARIABLES GLOBALES --- */
+/* Definimos los colores aquí para no tener que repetirlos mil veces.  */
+:root {
+    --primary-color: #0047ab;    /* Azul principal */
+    --secondary-color: #f0f4f8;  /* Gris muy clarito para el fondo */
+    --text-color: #333333;       /* Gris oscuro para el texto (no usas negro puro porque cansa la vista) */
+    --white: #ffffff;            /* Blanco puro */
+    --border-radius: 8px;        /* Qué tan redondeadas son las esquinas */
+}
+
+/* --- 2. RESETEO BÁSICO --- */
+/* Esto borra los estilos feos que traen los navegadores por defecto. */
+* {
+    margin: 0;                   /* Quita los márgenes por defecto */
+    padding: 0;                  /* Quita los rellenos por defecto */
+    box-sizing: border-box;      /* IMPORTANTE: Hace que el padding no agrande las cajas, facilita el cálculo de medidas */
+    font-family: 'Segoe UI', sans-serif; /* Fuente moderna y limpia */
+}
+
+/* --- 3. ESTILOS DEL CUERPO (BODY) --- */
+/* Estos estilos aplican a TODAS las páginas (Menú, Login, Transferencias...) */
+body {
+    background-color: var(--secondary-color); /* Usa el gris clarito */
+    color: var(--text-color);                 /* Usa el gris oscuro para letras */
+    /* NOTA: Aquí NO usamos flexbox. Dejamos que los elementos fluyan 
+       de arriba hacia abajo naturalmente (ideal para el Menú y Transacciones). */
+}
+
+/* --- 4. ESTILO ESPECIAL SOLO PARA LOGIN --- */
+/* Esta clase solo está en el <body> de login.html. 
+   Sirve para centrar la cajita de inicio de sesión perfectamente. */
+.login-layout {
+    display: flex;              /* Activa el modo flexible */
+    flex-direction: column;     /* Ordena los elementos en COLUMNA (uno debajo del otro) */
+    justify-content: center;    /* Centra verticalmente (eje Y) */
+    align-items: center;        /* Centra horizontalmente (eje X) */
+    height: 100vh;              /* Obliga al body a medir el 100% de la altura de la pantalla */
+}
+
+/* --- 5. BARRA DE NAVEGACIÓN (HEADER) --- */
+/* Es la barra blanca que sale arriba en el Menú Principal */
+header {
+    background-color: var(--white);
+    padding: 1rem 2rem;         /* Espacio interno: 1rem arriba/abajo, 2rem a los lados */
+    display: flex;              /* Usamos flex para separar el "Hola Usuario" del botón "Cerrar" */
+    justify-content: space-between; /* Empuja un elemento a la izquierda y otro a la derecha */
+    align-items: center;        /* Alinea los textos verticalmente al centro de la barra */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Una sombra suave debajo de la barra */
+    margin-bottom: 2rem;        /* Empuja el contenido de abajo para que no se pegue */
+}
+
+/* Estilo para los botones/enlaces dentro del Header */
+header nav a {
+    color: var(--primary-color);
+    text-decoration: none;      /* Quita el subrayado feo de los links */
+    font-weight: bold;          /* Letra un poco más gruesa */
+    padding: 0.5rem 1rem;       /* Hace el área de clic más grande */
+    border: 1px solid var(--primary-color); /* Borde azul */
+    border-radius: 4px;         /* Bordes un poco redondeados */
+    transition: background-color 0.3s; /* Suaviza el cambio de color al pasar el mouse */
+}
+
+/* Efecto al pasar el mouse por encima del botón del header */
+header nav a:hover {
+    background-color: var(--primary-color); /* Se pinta de azul */
+    color: var(--white);                    /* El texto cambia a blanco */
+}
+
+/* --- 6. CAJA PRINCIPAL (MAIN) --- */
+/* Aquí arreglamos el problema de que el menú se veía "apretado". */
+main {
+    background-color: var(--white);
+    padding: 2rem;              /* Espacio interno */
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra de tarjeta flotante */
+    
+    /* CONFIGURACIÓN ESTÁNDAR (Para Menú, Transacciones, etc.) */
+    width: 90%;                 /* Ocupa casi todo el ancho de la pantalla */
+    max-width: 800px;           /* PERO detente si llegas a 800px (para que no se vea gigante en PC) */
+    margin: 0 auto;             /* Centra la caja horizontalmente en la página */
+}
+
+/* --- 7. EXCEPCIÓN DEL MAIN SOLO PARA LOGIN --- */
+/* Si estamos en el login, sobreescribimos el ancho para hacerlo pequeño */
+.login-layout main {
+    width: 100%;                /* Ocupa el ancho disponible del padre */
+    max-width: 400px;           /* Pero limítalo a 400px (cajita pequeña y elegante) */
+    text-align: center;         /* Centra el texto "Bienvenido" */
+}
+
+/* --- 8. ELEMENTOS GENERALES --- */
+
+/* Títulos H1 */
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;      /* Espacio debajo del título */
+}
+
+/* Inputs (Campos de texto) y Selects (Menús desplegables) */
+input, select {
+    width: 100%;                /* Que ocupen todo el ancho posible */
+    padding: 0.8rem;            /* Espacio interno cómodo para escribir */
+    margin-bottom: 1rem;        /* Espacio debajo de cada input */
+    border: 1px solid #ccc;     /* Borde gris suave */
+    border-radius: var(--border-radius);
+}
+
+/* Botones principales */
+button {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;               /* Quitamos borde por defecto */
+    border-radius: var(--border-radius);
+    cursor: pointer;            /* Cambia el cursor a manito */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #003380;  /* Azul más oscuro al pasar el mouse */
+}
+
+/* Listas (usadas en el menú de opciones) */
+ul {
+    list-style: none;           /* Quita los puntos negros (bullets) */
+}
+
+ul li {
+    margin-bottom: 10px;        /* Espacio entre cada opción */
+}
+
+ul li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    display: block;             /* Hace que todo el renglón sea clickeable, no solo el texto */
+}
+
+ul li a:hover {
+    text-decoration: underline; /* Subraya al pasar el mouse */
+}
+
+/* Pie de página */
+footer {
+    text-align: center;         /* Texto centrado */
+    margin-top: 2rem;           /* Separación de arriba */
+    font-size: 0.8rem;          /* Letra pequeña */
+    color: #666;                /* Gris medio */
+}
+
+/* Clases de utilidad para colores de texto (usado en transacciones) */
+.positive { color: green; }
+.negative { color: red; }
